@@ -1,0 +1,10 @@
+/* styles.css */
+
+body {
+  padding-top: 56px; /* Adjusted for the fixed navbar height */
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
