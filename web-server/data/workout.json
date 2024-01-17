@@ -2,50 +2,66 @@
     {
         "day_of_week": "Monday",
         "type": "strength",
-        "exercises": ["squat", "lunges", "chest press"],
-        "rep_range": "8 to 10",
-        "set_range": "3 to 5"
+        "exercises": ["goblet squat", "side lunges", "rows", "superman"],
+        "rep_range": "10 ~ 12",
+        "set_range": "3 ~ 5"
     },
     {
         "day_of_week": "Tuesday",
-        "type": "yoga",
-        "exercises": ["down dog", "up dog", "child's pose"],
-        "rep_range": "30 sec",
-        "set_range": "1 to 2"
+        "type": "cardio",
+        "exercises": ["burpees", "jump rope", "jumping lunges"],
+        "rep_range": "60 sec",
+        "set_range": "3 ~ 5"
     },
     {
         "day_of_week": "Wednesday",
         "type": "cardio",
-        "exercises": ["running", "cycling", "jump rope"],
-        "rep_range": "15 to 45 min",
+        "exercises": ["running"],
+        "rep_range": "15 ~ 45 min",
         "set_range": "1"
     },
     {
         "day_of_week": "Thursday",
         "type": "strength",
-        "exercises": ["deadlift", "bench press", "pull-ups"],
-        "rep_range": "8 to 12",
-        "set_range": "3 to 4"
+        "exercises": ["deadlift", "bench press", "pull-ups", "leg raises"],
+        "rep_range": "10 ~ 12",
+        "set_range": "3 ~ 5"
     },
     {
         "day_of_week": "Friday",
         "type": "yoga",
-        "exercises": ["warrior pose", "tree pose", "seated forward bend"],
-        "rep_range": "30 sec",
-        "set_range": "1 to 2"
+        "exercises": [
+            "warrior pose",
+            "tree pose",
+            "seated forward bend",
+            "downdog",
+            "updog"
+        ],
+        "rep_range": "45 sec",
+        "set_range": "2 ~ 3"
     },
     {
         "day_of_week": "Saturday",
         "type": "strength",
-        "exercises": ["leg press", "shoulder press", "bicep curls"],
-        "rep_range": "10 to 12",
-        "set_range": "4 to 5"
+        "exercises": [
+            "walking lunges",
+            "shoulder press",
+            "bicep curls",
+            "wood choppers"
+        ],
+        "rep_range": "10 ~ 12",
+        "set_range": "3 ~ 5"
     },
     {
         "day_of_week": "Sunday",
         "type": "yoga",
-        "exercises": ["pigeon pose", "cat-cow stretch", "cobra pose"],
-        "rep_range": "30 sec",
-        "set_range": "1 to 2"
+        "exercises": [
+            "pigeon pose",
+            "cat-cow stretch",
+            "cobra pose",
+            "mermaid pose"
+        ],
+        "rep_range": "45 sec",
+        "set_range": "2 ~ 3"
     }
 ]
