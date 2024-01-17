@@ -1,0 +1,12 @@
+<article class="sidebar">
+    <h1 class="sidebar-title">Current Favorites</h1>
+    <p class="sidebar-body">
+        For my current obsessions in food, exercise, travel spots, and more.
+    </p>
+    <div class="pixgrid clearfix">
+        <% Array.from({length:3}).forEach((_,i) => { %>
+            <img src="/images/obsessions/obsessions_<%=i+1%>.jpg" 
+            alt="Obsessions <%=i+1%>" />
+        <% });%>
+    </div>
+</article>
