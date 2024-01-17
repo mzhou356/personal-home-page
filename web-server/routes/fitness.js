@@ -5,11 +5,10 @@ const router = express.Router()
 
 const fitness_routes = () => {
     router.get("/", (req, res) => {
-        console.log(workouts)
         return res.render("./layouts", {
             template: "fitness",
             workouts,
-            title: "fitness",
+            title: "Movement",
         })
     })
 
