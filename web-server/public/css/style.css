@@ -72,15 +72,15 @@ header .navbar-brand {
     }
 }
 
-.speakerslist {
+.workoutlist {
     line-height: 160%;
 }
 
-.speakerslist-title {
+.workoutlist-title {
     color: #000000 !important;
 }
 
-.speakerslist-name a:hover {
+.workoutlist-name a:hover {
     text-decoration: none;
     color: #343a40;
 }
@@ -139,4 +139,9 @@ header .navbar-brand {
     .pixgrid img {
         width: 20%;
     }
+}
+
+.col-sm-9 {
+    font-size: 1.1em;
+    font-weight: 400;
 }

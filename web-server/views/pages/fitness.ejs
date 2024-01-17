@@ -1,26 +1,29 @@
 <div class="container mt-4">
     <div class="row">
       <div class="col-sm-8">
-        <article class="speakerslist maincontent">
+        <article class="workoutlist maincontent">
           <% workouts.forEach(function (workout) {%>
           <div class="mb-4">
-            <h4 class="speakerslist-title"><%=workout.day_of_week%></h4>
-            <div class="speakerslist-name">
-              with
+            <h4 class="workoutlist-title"><%=workout.day_of_week%></h4>
+            <div class="workoutlist-name">
               <a href="/speakers/<%=workout.type%>"><%=workout.type%></a>
             </div>
-            <div class="row speakerslist-info mt-2">
+            <div class="row workoutlist-info mt-2">
               <div class="col-sm-3">
                 <a href="/speakers/<%=workout.rep_range%>">
                   <img
-                    class="speakerslist-img rounded-circle img-fluid"
-                    src="/images/speakers/<%=workout.type%>_tn.jpg"
-                    alt="Photo of <%=workout.set_range%>"
+                    class="workoutlist-img rounded-circle img-fluid"
+                    src="/images/fitness/<%=workout.type%>.jpg"
+                    alt="Photo of <%=workout.type%>"
                   />
                 </a>
               </div>
               <div class="col-sm-9">
-                <%=workout.exercises%>
+                <% workout.exercises.forEach( exercise => {%>
+                  <ul>
+                    <li><%=exercise%></li>
+                  </ul>
+                <% }); %>
               </div>
             </div>
           </div>
@@ -28,7 +31,7 @@
         </article>
       </div>
       <aside class="col-sm-4">
-        <%- include('./partials/artwork') %>
+        <%- include('./partials/obsessions') %>
       </aside>
     </div>
   </div>
