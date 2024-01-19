@@ -1,37 +1,39 @@
 <div class="container mt-4">
-    <div class="row">
-      <div class="col-sm-8">
-        <article class="workoutlist maincontent">
-          <% workouts.forEach(function (workout) {%>
-          <div class="mb-4">
-            <h4 class="workoutlist-title"><%=workout.day_of_week%></h4>
-            <div class="workoutlist-name">
-              <a href="/speakers/<%=workout.type%>"><%=workout.type%></a>
+  <div class="row">
+    <div class="col-sm-8">
+      <article class="workoutlist maincontent">
+        <% workouts.forEach(function (workout) {%>
+        <div class="mb-4">
+          <h4 class="workoutlist-title"><%=workout.day_of_week%></h4>
+          <div class="workoutlist-name">
+            <a href="/speakers/<%=workout.type%>"><%=workout.type%></a>
+          </div>
+          <div class="row workoutlist-info mt-2">
+            <div class="col-sm-3">
+              <a href="/speakers/<%=workout.rep_range%>">
+                <img
+                  class="workoutlist-img rounded-circle img-fluid"
+                  src="/images/fitness/<%=workout.type%>.jpg"
+                  alt="Photo of <%=workout.type%>"
+                />
+              </a>
             </div>
-            <div class="row workoutlist-info mt-2">
-              <div class="col-sm-3">
-                <a href="/speakers/<%=workout.rep_range%>">
-                  <img
-                    class="workoutlist-img rounded-circle img-fluid"
-                    src="/images/fitness/<%=workout.type%>.jpg"
-                    alt="Photo of <%=workout.type%>"
-                  />
-                </a>
-              </div>
-              <div class="col-sm-9">
-                <% workout.exercises.forEach( exercise => {%>
-                  <ul>
-                    <li><%=exercise%></li>
-                  </ul>
-                <% }); %>
-              </div>
+            <div class="col-sm-9">
+              <% workout.exercises.forEach( exercise => {%>
+                <ul>
+                  <li><%=exercise%></li>
+                </ul>
+              <% }); %>
             </div>
           </div>
-          <%})%>
-        </article>
-      </div>
-      <aside class="col-sm-4">
-        <%- include('./partials/obsessions') %>
-      </aside>
+        </div>
+        <%})%>
+
+        <%- include("./partials/update") %>
+      </article>
     </div>
+    <aside class="col-sm-4">
+      <%- include('./partials/obsessions') %>
+    </aside>
   </div>
+</div>

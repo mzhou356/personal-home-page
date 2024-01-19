@@ -112,7 +112,7 @@ header .navbar-brand {
     font-size: 1.1em;
 }
 
-.feedback-form label {
+.workout-form label {
     font-weight: 400;
 }
 
@@ -144,4 +144,8 @@ header .navbar-brand {
 .col-sm-9 {
     font-size: 1.1em;
     font-weight: 400;
+}
+
+.container.mt-4 {
+    width: 200%;
 }
