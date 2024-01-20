@@ -33,7 +33,21 @@
       </article>
     </div>
     <aside class="col-sm-4">
-      <%- include('./partials/obsessions') %>
+      <div class="workout-status">
+        <% if (locals.errors) {%>
+        <div class="alert alert-danger">
+          <ul>
+            <% errors.forEach(error=>{%>
+              <li><%=error.msg%></li>
+            <%})%>
+          </ul>
+        </div>
+        <%} else if (locals.successMessage) {%>
+        <div class="alert alert-success">
+          <%=successMessage %>
+        <%}%>
+        </div>
+      </div>
     </aside>
   </div>
 </div>

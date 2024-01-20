@@ -50,10 +50,16 @@ const fitness_routes = (params) => {
     const { fitnessService } = params
 
     router.get("/", (req, res) => {
+        const errors = req.session.fitness ? req.session.fitness.errors : false
+        const successMessage = req.session.fitness
+            ? req.session.fitness.message
+            : false
         return res.render("./layouts", {
             template: "fitness",
             workouts,
             title: "Movement",
+            errors,
+            successMessage,
         })
     })
 
@@ -69,7 +75,7 @@ const fitness_routes = (params) => {
         try {
             const { day, type, rep, sets, exercises } = req.body
             await fitnessService.updateData(day, type, rep, sets, exercises)
-            req.session.fitnss = {
+            req.session.fitness = {
                 message: `workout has been updated for ${day}`,
             }
             return res.redirect("/fitness")

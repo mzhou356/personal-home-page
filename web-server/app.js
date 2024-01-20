@@ -14,6 +14,9 @@ const PORT = 3000
 
 const fitnessService = new FitnessService("./data/workout.json")
 
+// trust reverse proxy, X-forwarded-for header
+app.set("trust proxy", 1)
+
 //set up cookie
 app.use(
     cookieSession({
