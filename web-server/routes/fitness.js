@@ -69,7 +69,6 @@ const fitness_routes = (params) => {
             req.session.fitness = {
                 errors: validateResult.array(),
             }
-            console.log(req.session.fitness)
             return res.redirect("/fitness")
         }
         try {
