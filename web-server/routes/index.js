@@ -3,7 +3,7 @@ import fitness_routes from "./fitness.js"
 
 const router = express.Router()
 
-const routes = () => {
+const routes = (params) => {
     router.get("/", (req, res, next) => {
         return res.render("./layouts", {
             template: "index",
@@ -11,7 +11,7 @@ const routes = () => {
         })
     })
 
-    router.use("/fitness", fitness_routes())
+    router.use("/fitness", fitness_routes(params))
 
     return router
 }
