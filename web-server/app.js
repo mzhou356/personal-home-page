@@ -3,11 +3,27 @@ import path from "path"
 import { fileURLToPath } from "url"
 import routes from "./routes/index.js"
 import createError from "http-errors"
+import FitnessService from "./services/FitnessService.js"
+import bodyParser from "body-parser"
+import cookieSession from "cookie-session"
 
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = 3000
+
+const fitnessService = new FitnessService("./data/workout.json")
+
+// trust reverse proxy, X-forwarded-for header
+app.set("trust proxy", 1)
+
+//set up cookie
+app.use(
+    cookieSession({
+        name: "session",
+        keys: ["slkoduopo", "ywooppsdsl"],
+    }),
+)
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"))
@@ -16,7 +32,11 @@ app.set("view engine", "ejs")
 // allow engine to access static files such as images
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use("/", routes())
+// allow parsing for post
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json()) // rest
+
+app.use("/", routes({ fitnessService }))
 
 // handle all remaining routes 404
 app.use((req, res, next) => {

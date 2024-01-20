@@ -1,0 +1,65 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="maincontent">
+                <h1>Update Workout</h1>
+                <form class="workout-form" method="POST" action="/fitness">
+                    <div class="form-group">
+                        <label for="workout-form-day">day of week</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="workout-form-day-of-week"
+                            name="day"
+                            placeholder="Enter a day of week such as Monday"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="workout-form-workout-type">workout type</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="workout-form-workout-type"
+                            name="type"
+                            placeholder="Enter strength, cardio, yoga"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="workout-form-rep-range">rep or duration</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="workout-form-rep-range"
+                            name="rep"
+                            placeholder="Enter exercise rep range or duration"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="workout-form-sets">number of sets</label>
+                        <input
+                            type="number"
+                            placeholder="Enter number of sets. "
+                            class="form-control"
+                            name="sets"
+                            id="feedback-form-sets"
+                        ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="workout-form-exercises">exercises</label>
+                        <textarea
+                            type="text"
+                            placeholder="Enter exercises with comma delimiter such as chest press, squats"
+                            class="form-control"
+                            id="feedback-form-exercises",
+                            name="exercises"
+                            rows="6"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary float-right">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
