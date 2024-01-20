@@ -5,6 +5,7 @@ import routes from "./routes/index.js"
 import createError from "http-errors"
 import FitnessService from "./services/FitnessService.js"
 import bodyParser from "body-parser"
+import cookieSession from "cookie-session"
 
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -12,6 +13,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PORT = 3000
 
 const fitnessService = new FitnessService("./data/workout.json")
+
+//set up cookie
+app.use(
+    cookieSession({
+        name: "session",
+        keys: ["slkoduopo", "ywooppsdsl"],
+    }),
+)
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"))
