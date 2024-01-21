@@ -2,11 +2,14 @@
   <div class="row">
     <div class="col-sm-8">
       <article class="workoutlist maincontent">
+        <div class="workout-info">
         <% workouts.forEach(function (workout) {%>
         <div class="mb-4">
           <h4 class="workoutlist-title"><%=workout.day_of_week%></h4>
           <div class="workoutlist-name">
             <a href="/speakers/<%=workout.type%>"><%=workout.type%></a>
+            <div> rep/duration: <%=workout.rep_range%> </div>
+            <div> sets: <%=workout.set_range%> </div>
           </div>
           <div class="row workoutlist-info mt-2">
             <div class="col-sm-3">
@@ -28,7 +31,7 @@
           </div>
         </div>
         <%})%>
-
+      </div>
         <%- include("./partials/update") %>
       </article>
     </div>
@@ -51,3 +54,4 @@
     </aside>
   </div>
 </div>
+<script src="/javascripts/fitness.js"></script>

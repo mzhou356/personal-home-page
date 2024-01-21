@@ -54,6 +54,7 @@ const fitness_routes = (params) => {
         const successMessage = req.session.fitness
             ? req.session.fitness.message
             : false
+        req.session.fitness = {}
         return res.render("./layouts", {
             template: "fitness",
             workouts,
@@ -78,6 +79,24 @@ const fitness_routes = (params) => {
                 message: `workout has been updated for ${day}`,
             }
             return res.redirect("/fitness")
+        } catch (err) {
+            return next(err)
+        }
+    })
+
+    router.post("/api", validations, async (req, res, next) => {
+        const validateResult = validationResult(req)
+        if (!validateResult.isEmpty()) {
+            return res.json({ errors: validateResult.array() })
+        }
+        try {
+            const { day, type, rep, sets, exercises } = req.body
+            await fitnessService.updateData(day, type, rep, sets, exercises)
+            const workouts = await fitnessService.getData()
+            return res.json({
+                workouts,
+                successMessage: `workout has been updated for ${day}`,
+            })
         } catch (err) {
             return next(err)
         }
