@@ -83,6 +83,24 @@ const fitness_routes = (params) => {
         }
     })
 
+    router.post("/api", validations, async (req, res, next) => {
+        const validateResult = validationResult(req)
+        if (!validateResult.isEmpty()) {
+            return res.json({ errors: validateResult.array() })
+        }
+        try {
+            const { day, type, rep, sets, exercises } = req.body
+            await fitnessService.updateData(day, type, rep, sets, exercises)
+            const data = await fitnessService.getData()
+            return res.json({
+                data,
+                successMessage: `workout has been updated for ${day}`,
+            })
+        } catch (err) {
+            return next(err)
+        }
+    })
+
     return router
 }
 
