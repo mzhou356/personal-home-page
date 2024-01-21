@@ -54,6 +54,7 @@ const fitness_routes = (params) => {
         const successMessage = req.session.fitness
             ? req.session.fitness.message
             : false
+        req.session.fitness = {}
         return res.render("./layouts", {
             template: "fitness",
             workouts,
@@ -91,9 +92,9 @@ const fitness_routes = (params) => {
         try {
             const { day, type, rep, sets, exercises } = req.body
             await fitnessService.updateData(day, type, rep, sets, exercises)
-            const data = await fitnessService.getData()
+            const workouts = await fitnessService.getData()
             return res.json({
-                data,
+                workouts,
                 successMessage: `workout has been updated for ${day}`,
             })
         } catch (err) {
