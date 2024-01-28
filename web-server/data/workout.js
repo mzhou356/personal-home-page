@@ -9,18 +9,31 @@ dotenv.config({ path: path.join(__dirname, "../.env") })
 
 const uri = `mongodb://${process.env.user}:${process.env.password}@localhost:27017/?authSource=${process.env.db}`
 
-const client = new MongoClient(uri)
+const client = new MongoClient(uri, { useUnifiedTopology: true })
 
-async function connect() {
-    try {
-        const db = client.db(process.env.db)
-        const exercises = db.collection("exercises")
-        const cursor = exercises.find().sort({ day_number: 1 })
-        const all_exercises = await cursor.toArray()
-        return all_exercises
-    } catch (err) {
-        console.log(err)
+class WorkoutService {
+    constructor() {
+        this.database = process.env.db
+        this.client = client
+    }
+
+    async getData(collection, sort_key = null, ascending = 1) {
+        try {
+            await client.connect()
+            const db = client.db(this.database)
+            const exercises = db.collection(collection)
+            const cursor = exercises.find()
+            const result = sort_key
+                ? cursor.sort({ day_number: ascending })
+                : cursor
+            const all_exercises = await result.toArray()
+            return all_exercises
+        } catch (err) {
+            console.log(err)
+        } finally {
+            await client.close()
+        }
     }
 }
 
-export default connect
+export default WorkoutService

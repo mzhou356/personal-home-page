@@ -1,7 +1,7 @@
 import express from "express"
 import workouts from "../data/workout.json" assert { type: "json" }
 import { check, validationResult } from "express-validator"
-import connect from "../data/workout.js"
+import WorkoutService from "../data/workout.js"
 
 const router = express.Router()
 const validations = [
@@ -49,6 +49,7 @@ const validations = [
 
 const fitness_routes = (params) => {
     const { fitnessService } = params
+    const workoutService = new WorkoutService()
 
     router.get("/", async (req, res) => {
         const errors = req.session.fitness ? req.session.fitness.errors : false
@@ -56,7 +57,10 @@ const fitness_routes = (params) => {
             ? req.session.fitness.message
             : false
         req.session.fitness = {}
-        const test_workouts = await connect()
+        const test_workouts = await workoutService.getData(
+            "exercises",
+            "day_number",
+        )
         return res.render("./layouts", {
             template: "fitness",
             workouts: test_workouts,
