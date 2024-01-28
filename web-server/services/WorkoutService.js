@@ -15,11 +15,23 @@ class WorkoutService {
     constructor() {
         this.database = process.env.db
         this.client = client
+        this.is_connected = false
+    }
+
+    async connect() {
+        try {
+            if (!this.is_connected) {
+                await this.client.connect()
+                this.is_connected = true
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     async getData(collection, sort_key = null, ascending = 1) {
         try {
-            await client.connect()
+            await this.connect()
             const db = client.db(this.database)
             const exercises = db.collection(collection)
             const cursor = exercises.find()
@@ -31,16 +43,16 @@ class WorkoutService {
         } catch (err) {
             console.log(err)
         } finally {
-            await client.close()
+            this.close_connection()
         }
     }
 
     async updateData(collection, dayOfWeek, workoutType, rep, sets, exercises) {
         try {
-            await client.connect()
+            await this.client.connect()
             const db = client.db(this.database)
-            const collection = db.collection(collection)
-            collection.updateOne(
+            const data = db.collection(collection)
+            data.updateOne(
                 { day_of_week: dayOfWeek },
                 {
                     $set: {
@@ -53,11 +65,19 @@ class WorkoutService {
                 },
                 {},
             )
-            console.log("success")
         } catch (err) {
             console.log(err)
-        } finally {
-            await client.close()
+        }
+    }
+
+    async close_connection() {
+        try {
+            if (this.is_connected) {
+                await this.client.close()
+                this.is_connected = false
+            }
+        } catch (err) {
+            console.log(err)
         }
     }
 }

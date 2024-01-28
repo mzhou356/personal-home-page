@@ -1,7 +1,5 @@
 import express from "express"
-import workouts from "../data/workout.json" assert { type: "json" }
 import { check, validationResult } from "express-validator"
-import WorkoutService from "../data/workout.js"
 
 const router = express.Router()
 const validations = [
@@ -48,8 +46,7 @@ const validations = [
 ]
 
 const fitness_routes = (params) => {
-    const { fitnessService } = params
-    const workoutService = new WorkoutService()
+    const { workoutService } = params
 
     router.get("/", async (req, res) => {
         const errors = req.session.fitness ? req.session.fitness.errors : false
@@ -57,37 +54,14 @@ const fitness_routes = (params) => {
             ? req.session.fitness.message
             : false
         req.session.fitness = {}
-        const test_workouts = await workoutService.getData(
-            "exercises",
-            "day_number",
-        )
+        const workouts = await workoutService.getData("exercises", "day_number")
         return res.render("./layouts", {
             template: "fitness",
-            workouts: test_workouts,
+            workouts,
             title: "Movement",
             errors,
             successMessage,
         })
-    })
-
-    router.post("/", validations, async (req, res, next) => {
-        const validateResult = validationResult(req)
-        if (!validateResult.isEmpty()) {
-            req.session.fitness = {
-                errors: validateResult.array(),
-            }
-            return res.redirect("/fitness")
-        }
-        try {
-            const { day, type, rep, sets, exercises } = req.body
-            await fitnessService.updateData(day, type, rep, sets, exercises)
-            req.session.fitness = {
-                message: `workout has been updated for ${day}`,
-            }
-            return res.redirect("/fitness")
-        } catch (err) {
-            return next(err)
-        }
     })
 
     router.post("/api", validations, async (req, res, next) => {
@@ -97,8 +71,19 @@ const fitness_routes = (params) => {
         }
         try {
             const { day, type, rep, sets, exercises } = req.body
-            await fitnessService.updateData(day, type, rep, sets, exercises)
-            const workouts = await fitnessService.getData()
+            await workoutService.connect()
+            await workoutService.updateData(
+                "exercises",
+                day,
+                type,
+                rep,
+                sets,
+                exercises,
+            )
+            const workouts = await workoutService.getData(
+                "exercises",
+                "day_number",
+            )
             return res.json({
                 workouts,
                 successMessage: `workout has been updated for ${day}`,
