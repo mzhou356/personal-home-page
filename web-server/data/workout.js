@@ -34,6 +34,32 @@ class WorkoutService {
             await client.close()
         }
     }
+
+    async updateData(collection, dayOfWeek, workoutType, rep, sets, exercises) {
+        try {
+            await client.connect()
+            const db = client.db(this.database)
+            const collection = db.collection(collection)
+            collection.updateOne(
+                { day_of_week: dayOfWeek },
+                {
+                    $set: {
+                        day_of_week: dayOfWeek,
+                        type: workoutType,
+                        exercises: exercises.split(","),
+                        rep_range: rep,
+                        set_range: sets,
+                    },
+                },
+                {},
+            )
+            console.log("success")
+        } catch (err) {
+            console.log(err)
+        } finally {
+            await client.close()
+        }
+    }
 }
 
 export default WorkoutService
