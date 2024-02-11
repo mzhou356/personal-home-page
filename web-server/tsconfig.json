@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2022",
+        "module": "es2022",
+        "lib": ["dom", "es2022", "scripthost"],
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "preserveSymlinks": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "useUnknownInCatchVariables": false
+    }
+}
