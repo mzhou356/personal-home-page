@@ -9,7 +9,6 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "test": "tsc -v",
         "start": "nodemon --exec node --loader ts-node/esm server.ts"
     },
     "dependencies": {

@@ -3,7 +3,7 @@ import path from "path"
 import { fileURLToPath } from "url"
 import routes from "./routes/index.js"
 import createError from "http-errors"
-import FitnessService from "./services/FitnessService.js"
+import WorkoutService from "./services/WorkoutService.js"
 import bodyParser from "body-parser"
 import cookieSession from "cookie-session"
 
@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = 3000
 
-const fitnessService = new FitnessService("./data/workout.json")
+const workoutService = new WorkoutService()
 
 // trust reverse proxy, X-forwarded-for header
 app.set("trust proxy", 1)
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json()) // rest
 
-app.use("/", routes({ fitnessService }))
+app.use("/", routes({ workoutService }))
 
 // handle all remaining routes 404
 app.use((req, res, next) => {
