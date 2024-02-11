@@ -9,6 +9,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
+        "bundler": "webpack --config ./webpack.config.js --mode=development -w",
         "start": "nodemon --exec node --loader ts-node/esm server.ts"
     },
     "dependencies": {
@@ -25,9 +26,14 @@
         "morgan": "^1.10.0",
         "nodemon": "^3.0.2",
         "path": "^0.12.7",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "ts-loader": "^9.5.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.3.3",
-        "url": "^0.11.3"
+        "url": "^0.11.3",
+        "webpack": "^5.90.1",
+        "webpack-cli": "^5.1.4"
     },
     "devDependencies": {
         "eslint": "^8.56.0",
