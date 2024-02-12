@@ -6,7 +6,7 @@ import createError from "http-errors"
 import WorkoutService from "./services/WorkoutService.js"
 import bodyParser from "body-parser"
 import cookieSession from "cookie-session"
-
+import apiRouter from "./routes/api-router.js"
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -37,6 +37,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json()) // rest
 
 app.use("/", routes({ workoutService }))
+
+app.use("/api", apiRouter)
 
 // handle all remaining routes 404
 app.use((req, res, next) => {

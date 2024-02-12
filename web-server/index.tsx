@@ -1,9 +1,13 @@
 import { createRoot } from "react-dom/client"
+import App from "./components/app"
 
+const TODOS = [
+    "Leverage AI more",
+    "Build an api sever",
+    "focus on stress management blog",
+]
 const container = document.getElementById("react-app")
-const App = () => {
-    return <div> Hello from React! </div>
-}
+
 const root = createRoot(container)
 
-root.render(<App />)
+root.render(<App TODOS={TODOS} />)
