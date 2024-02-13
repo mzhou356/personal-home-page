@@ -11,6 +11,7 @@ const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = 3000
+const HOST = "0.0.0.0"
 
 const workoutService = new WorkoutService()
 
@@ -56,7 +57,7 @@ app.use((err, req, res, next) => {
     res.render("./error")
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
     console.log(`Listening on port ${PORT} 🤗.`)
 })
 

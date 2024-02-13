@@ -1,16 +1,17 @@
-import Header from "./Header"
+import Header from "./header"
+import Todos from "./todos"
 import { useState, useEffect } from "react"
 
 const App = ({ TODOS }) => {
     const [counter, setCounter] = useState(0)
-    useEffect(() => {
-        const id = setInterval(() => {
-            setCounter(counter + 1)
-        }, 1000)
-        return () => {
-            clearInterval(id)
-        }
-    }, [counter])
+    // useEffect(() => {
+    //     const id = setInterval(() => {
+    //         setCounter(counter + 1)
+    //     }, 1000)
+    //     return () => {
+    //         clearInterval(id)
+    //     }
+    // }, [counter])
     return (
         <>
             <Header message="Welcome to my to do list." />
@@ -21,11 +22,7 @@ const App = ({ TODOS }) => {
             >
                 {counter}
             </button>
-            <ul className="feedback-item">
-                {TODOS.map((elt, key) => {
-                    return <li key={key}>{elt}</li>
-                })}
-            </ul>
+            <Todos data={TODOS.data} />
         </>
     )
 }
