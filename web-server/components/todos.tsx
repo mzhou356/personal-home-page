@@ -1,21 +1,15 @@
 import Item from "./item"
 import { fetchItems } from "../api-client"
-import { useEffect, useState, Suspense } from "react"
 
-const Loading = () => {
-    return <p>Loading to do lists ... </p>
-}
-const data = await fetchItems()
-const items = data.TODOs
 const Todos = () => {
+    const data = fetchItems()
     return (
-        <Suspense fallback={<Loading />}>
-            <ul className="feedback-item">
-                {items.map((item) => {
+        <ul className="feedback-item">
+            {data &&
+                data.TODOs.map((item) => {
                     return <Item key={item.id} item={item} />
                 })}
-            </ul>
-        </Suspense>
+        </ul>
     )
 }
 export default Todos

@@ -1,7 +1,12 @@
 import TODOs from "../routes/to-do"
 import Header from "./header"
 import Todos from "./todos"
-import { useState, useEffect } from "react"
+import { useState, Suspense } from "react"
+import ErrorBoundary from "./ErrorBoundary"
+
+const Loading = () => {
+    return <p>Loading to do lists ... </p>
+}
 
 const App = () => {
     const [counter, setCounter] = useState(0)
@@ -23,7 +28,15 @@ const App = () => {
             >
                 {counter}
             </button>
-            <Todos />
+            <ErrorBoundary
+                fallback={
+                    <div> Error occured when loading items lists ... </div>
+                }
+            >
+                <Suspense fallback={<Loading />}>
+                    <Todos />
+                </Suspense>
+            </ErrorBoundary>
         </>
     )
 }

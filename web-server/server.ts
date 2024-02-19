@@ -11,7 +11,7 @@ const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = 3000
-const HOST = "0.0.0.0"
+const HOST = "localhost"
 
 const workoutService = new WorkoutService()
 

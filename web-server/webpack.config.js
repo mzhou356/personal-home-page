@@ -27,7 +27,7 @@ const module = {
     },
     plugins: [
         new webpack.EnvironmentPlugin({
-            HOST: "0.0.0.0",
+            HOST: "localhost",
             PORT: "3000",
         }),
     ],
