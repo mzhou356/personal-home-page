@@ -6,11 +6,12 @@ import createError from "http-errors"
 import WorkoutService from "./services/WorkoutService.js"
 import bodyParser from "body-parser"
 import cookieSession from "cookie-session"
-
+import apiRouter from "./routes/api-router.js"
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = 3000
+const HOST = "localhost"
 
 const workoutService = new WorkoutService()
 
@@ -38,6 +39,8 @@ app.use(bodyParser.json()) // rest
 
 app.use("/", routes({ workoutService }))
 
+app.use("/api", apiRouter)
+
 // handle all remaining routes 404
 app.use((req, res, next) => {
     next(createError(404))
@@ -54,7 +57,7 @@ app.use((err, req, res, next) => {
     res.render("./error")
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
     console.log(`Listening on port ${PORT} 🤗.`)
 })
 
