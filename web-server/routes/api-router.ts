@@ -7,7 +7,7 @@ const apiRouter = express.Router()
 apiRouter.use(cors())
 
 apiRouter.get("/to-dos", (req, res) => {
-    res.json({ data: TODOs })
+    res.json({ TODOs })
 })
 
 export default apiRouter

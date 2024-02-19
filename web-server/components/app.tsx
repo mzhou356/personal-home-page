@@ -1,8 +1,9 @@
+import TODOs from "../routes/to-do"
 import Header from "./header"
 import Todos from "./todos"
 import { useState, useEffect } from "react"
 
-const App = ({ TODOS }) => {
+const App = () => {
     const [counter, setCounter] = useState(0)
     // useEffect(() => {
     //     const id = setInterval(() => {
@@ -22,7 +23,7 @@ const App = ({ TODOS }) => {
             >
                 {counter}
             </button>
-            <Todos data={TODOS.data} />
+            <Todos />
         </>
     )
 }
