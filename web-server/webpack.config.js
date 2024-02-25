@@ -5,8 +5,11 @@ import webpack from "webpack"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const module = {
-    entry: "./index.tsx",
+const webpackConfig = {
+    entry: {
+        main: "./index.tsx",
+        render: "./render.tsx",
+    },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],
     },
@@ -22,7 +25,7 @@ const module = {
         ],
     },
     output: {
-        filename: "main.js",
+        filename: "[name].js",
         path: `${__dirname}/public/dist`,
     },
     plugins: [
@@ -33,4 +36,4 @@ const module = {
     ],
 }
 
-export default module
+export default webpackConfig
