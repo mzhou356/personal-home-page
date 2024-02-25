@@ -4,10 +4,12 @@ import fitness_routes from "./fitness.js"
 const router = express.Router()
 
 const routes = (params) => {
-    router.get("/", (req, res, next) => {
+    router.get("/", async (req, res, next) => {
+        const { initialData } = params
         return res.render("./layouts", {
             template: "index",
             title: "Mindy's Home Page",
+            initialData,
         })
     })
 

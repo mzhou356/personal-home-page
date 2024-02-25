@@ -7,6 +7,7 @@ import WorkoutService from "./services/WorkoutService.js"
 import bodyParser from "body-parser"
 import cookieSession from "cookie-session"
 import apiRouter from "./routes/api-router.js"
+import serverRender from "./render.js"
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -14,6 +15,7 @@ const PORT = 3000
 const HOST = "localhost"
 
 const workoutService = new WorkoutService()
+const initialData = serverRender()
 
 // trust reverse proxy, X-forwarded-for header
 app.set("trust proxy", 1)
@@ -37,7 +39,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json()) // rest
 
-app.use("/", routes({ workoutService }))
+app.use("/", routes({ initialData, workoutService }))
 
 app.use("/api", apiRouter)
 
