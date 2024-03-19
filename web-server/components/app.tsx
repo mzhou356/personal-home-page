@@ -1,4 +1,3 @@
-import TODOs from "../routes/to-do"
 import Header from "./header"
 import Todos from "./todos"
 import { useState, Suspense } from "react"
@@ -10,6 +9,19 @@ const Loading = () => {
 
 const App = () => {
     const [counter, setCounter] = useState(0)
+    const [page, setPage] = useState("lists")
+    const pageContent = () => {
+        switch (page) {
+            case "lists":
+                return <Todos onItemClick={getItem} />
+            case "item":
+                return "..."
+        }
+    }
+
+    const getItem = () => {
+        setPage("item")
+    }
     // useEffect(() => {
     //     const id = setInterval(() => {
     //         setCounter(counter + 1)
@@ -33,9 +45,7 @@ const App = () => {
                     <div> Error occured when loading items lists ... </div>
                 }
             >
-                <Suspense fallback={<Loading />}>
-                    <Todos />
-                </Suspense>
+                <Suspense fallback={<Loading />}>{pageContent()}</Suspense>
             </ErrorBoundary>
         </>
     )
